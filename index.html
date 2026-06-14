@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splat — A tiny creative explosion every day.</title>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#E9E2D0;font-family:'Kalam',system-ui,cursive}
+  /* the design, exactly as given — never altered */
+  .design-wrap{position:relative;width:100%;max-width:1024px;margin:0 auto}
+  .design{display:block;width:100%;height:auto}
+  .overlay{position:absolute;inset:0;z-index:5}
+  .anchor{position:absolute;left:0;width:1px;height:1px}
+  .hot{position:absolute;cursor:pointer;background:transparent;border:none;outline:none;-webkit-appearance:none;appearance:none;padding:0}
+
+  .quip{position:absolute;z-index:8;background:#fff;border:2.5px solid #15140f;border-radius:16px;padding:7px 13px;
+        font-weight:700;font-size:clamp(11px,1.5vw,16px);box-shadow:3px 3px 0 #15140f;white-space:nowrap;opacity:0;
+        transform:translateY(8px) scale(.85) rotate(-2deg);transition:.2s;pointer-events:none}
+  .quip.show{opacity:1;transform:translateY(0) scale(1) rotate(-2deg)}
+  .quip::after{content:"";position:absolute;left:24px;bottom:-11px;border:6px solid transparent;border-top-color:#15140f}
+</style>
+</head>
+<body>
+<div class="design-wrap" id="top">
+  <img class="design" src="design.png" alt="Splat — a tiny creative explosion every day">
+
+  <div class="anchor" id="how" style="top:41%"></div>
+  <div class="anchor" id="about" style="top:65%"></div>
+  <div class="anchor" id="wall" style="top:82%"></div>
+  <div class="anchor" id="get" style="top:71%"></div>
+
+  <div class="overlay">
+    <a class="hot" href="#how"   style="left:36%;top:2.4%;width:11%;height:3%"></a>
+    <a class="hot" href="#wall"  style="left:48%;top:2.4%;width:7%;height:3%"></a>
+    <a class="hot" href="#about" style="left:56%;top:2.4%;width:6%;height:3%"></a>
+    <a class="hot" href="#how"   style="left:62.5%;top:2.4%;width:5%;height:3%"></a>
+    <a class="hot" href="get.html" style="left:83%;top:2%;width:13%;height:3.6%"></a>
+
+    <a class="hot" href="get.html" style="left:6.5%;top:34.3%;width:16.5%;height:3.4%"></a>
+    <a class="hot" href="#how" style="left:25.5%;top:34.6%;width:14%;height:2.8%"></a>
+
+    <button class="hot quipper" style="left:63.5%;top:33%;width:18%;height:3.2%"></button>
+    <button class="hot quipper" style="left:65%;top:36.2%;width:14%;height:2.4%"></button>
+
+    <a class="hot" href="get.html" style="left:77.5%;top:72%;width:15%;height:3.2%"></a>
+    <a class="hot" href="#wall" style="left:6.5%;top:87%;width:16%;height:3.4%"></a>
+
+    <!-- footer links → new pages (pixel-measured against the comp's black footer bar) -->
+    <a class="hot" href="privacy.html" style="left:29.5%;top:96.8%;width:5.5%;height:2.2%"></a>
+    <a class="hot" href="terms.html"   style="left:36%;top:96.8%;width:4.5%;height:2.2%"></a>
+    <a class="hot" href="contact.html" style="left:41.8%;top:96.8%;width:5.5%;height:2.2%"></a>
+
+    <div class="quip" id="quip" style="left:52%;top:6%">Beautifully weird.</div>
+  </div>
+</div>
+
+<script>
+  const rnd=a=>a[Math.floor(Math.random()*a.length)];
+  const quips=["Your creature looks suspicious 👀","Beautifully weird.","Chaos level: acceptable.","That's... a choice. We love it.","Certified gremlin behaviour.","Unhinged. Proceed.","Suspiciously good."];
+  const q=document.getElementById('quip'); let qt;
+  function say(t){q.textContent=t||rnd(quips);q.classList.add('show');clearTimeout(qt);qt=setTimeout(()=>q.classList.remove('show'),2300);}
+  document.querySelectorAll('.quipper').forEach(b=>b.addEventListener('click',()=>say()));
+</script>
+</body>
+</html>
